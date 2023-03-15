@@ -2,10 +2,32 @@
 
 {% block content %}
 
+<div style="margin-top: 50px;" class="ui container">
+    <h1 class="ui center aligned header">Список критических уязвимостей</h1>
+    <h3 class="test_style">Управляй своими уязвимостями!</h3>
+    <form class="ui form" action="{% url 'add' %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label>Новая уязвимость</label>
+            <input type="text" name="title" placeholder="Введите уязвимость"><br>
+        </div>
+        <button class="ui teal basic button" type="submit">Добавить</button>
+    </form>
+
 {% for todo in todo_list %}
-    <p> {{  todo.title }}</p>
+<div class="ui segment">
+    <p class="ui big header">№{{ todo.id }} {{ todo.title }}</p>
+
+    {% if todo.is_complete == False %}
+    <span class="ui gray label">Активна</span>
+    <a class="ui primary basic button" href="{% url 'update' todo_id=todo.id %}">Закрыть</a>
+    {% else %}
+    <span class="ui green label">Устранена</span>
+    <a class="ui blue button" href="{% url 'update' todo_id=todo.id %}">Открыть</a>
+    {% endif %}
+    <a class="ui negative button" href="{% url 'delete' todo_id=todo.id %}">Удалить</a>
+</div>
 {% endfor %}
+</div>
 
-
-
-{% endblock %}
+{% endblock content %}

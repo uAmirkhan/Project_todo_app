@@ -19,7 +19,12 @@ def add(request):
     return  redirect('index')      # возвращаемся на главную страницу
 
 def update(request, todo_id):
-    todo = ToDo.objects.get(id=todo_id)  #ищем по айди таску
+    todo = ToDo.objects.get(id=todo_id)  #обращаемся к модели обьекта ищем по айди таску
     todo.is_complete = not todo.is_complete # поле "выполнено" в false
     todo.save()
     return redirect('index')
+
+def delete(request,todo_id):
+    todo = ToDo.objects.get(id=todo_id)
+    todo.delete() # удаляем
+    return redirect('index') # возвращаемся на главную

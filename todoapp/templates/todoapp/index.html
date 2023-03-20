@@ -8,10 +8,10 @@
     <form class="ui form" action="{% url 'add' %}" method="post">
         {% csrf_token %}
         <div class="field">
-            <label>Новая уязвимость</label>
-            <input type="text" name="title" placeholder="Введите уязвимость"><br>
+            <label>Введите название уязвимости</label>
+            <input type="text" name="title" placeholder="Поле для ввода"><br>
         </div>
-        <button class="ui teal basic button" type="submit">Добавить</button>
+        <button class="ui teal green button" type="submit">Добавить</button>
     </form>
 
 
@@ -20,11 +20,11 @@
     <p class="ui big header">№{{ todo.id }} {{ todo.title }}</p>
 
     {% if todo.is_complete == False %}
-    <span class="ui gray label">Активна</span>
-    <a class="ui primary basic button" href="{% url 'update' todo_id=todo.id %}">Закрыть</a>
+    <span class="ui yellow label">Активна</span>
+    <a class="ui primary blue button" href="{% url 'update' todo_id=todo.id %}">Устранена</a>
     {% else %}
     <span class="ui green label">Устранена</span>
-    <a class="ui blue button" href="{% url 'update' todo_id=todo.id %}">Открыть</a>
+    <a class="ui primary blue button" href="{% url 'update' todo_id=todo.id %}">Изменить статус</a>
     {% endif %}
     <a class="ui negative button" href="{% url 'delete' todo_id=todo.id %}">Удалить</a>
 </div>

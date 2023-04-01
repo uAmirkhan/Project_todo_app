@@ -3,6 +3,9 @@
 {% block content %}
 
 <div style="margin-top: 50px;" class="ui container">
+
+    <a class="ui gray button" href="{% url 'export_to_excel' %}">Скачать Excel-файл</a>
+
     <h1 class="ui center aligned header">Список критических уязвимостей</h1>
     <h3 class="test_style">Управляй своими уязвимостями!</h3>
     <form class="ui form" action="{% url 'add' %}" method="post">

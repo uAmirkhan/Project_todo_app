@@ -1,9 +1,22 @@
 
 # Create your views here.
+
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
+from django.http import HttpResponse
+from .export import export_to_excel
+
 from .models import ToDo
+
+
+
+def export_to_excel_view(request):
+    export_to_excel()
+    with open('exported_data.xlsx', 'rb') as f:
+        response = HttpResponse(f.read(), content_type='application/vnd.ms-excel')
+        response['Content-Disposition'] = 'attachment; filename=exported_data.xlsx'
+        return response
 
 
 def index(request):

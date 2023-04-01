@@ -3,8 +3,9 @@ from django.db import models
 # Create your models here.
 
 class ToDo(models.Model):
-    title = models.CharField('Название задания', max_length=500)  #заданияф
+    title = models.CharField('Название задания', max_length=500)
     is_complete = models.BooleanField("Завершено", default=False)
+   # description = models.CharField(blank=True)
 
 
     class Meta:
